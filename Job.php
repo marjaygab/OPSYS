@@ -10,6 +10,7 @@ class Job
   public $PRIORITY;
   public $MEMORY;
   public $FT=0;
+  public $FINISH_FLAG = false;
 
   function __construct($JOB_ID_VAL,$AT_VAL,$PRIO,$MEM,$BT_VAL)
   {

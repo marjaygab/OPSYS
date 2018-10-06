@@ -50,7 +50,6 @@ include 'Job.php';
                         sort($temparray);
                         return $temparray[0];
                     }
-
                      //For loop to display the stored values.
                     function displayValues($JOB_LIST){
                           for($i=0;$i<count($JOB_LIST);$i++){
@@ -76,8 +75,6 @@ include 'Job.php';
                         echo "</tr>";
                     }
                     }
-
-
             //Code for uploading to $_SERVER['DOCUMENT_ROOT']
             if($_FILES["data-file"]["error"] >0){
               echo "Error:" . $_FILES["data-file"]["error"] . "<br />";
@@ -92,9 +89,6 @@ include 'Job.php';
             $myfile = fopen($uploadfile,"r") or die("Unable to open file!");
             $tempnum = 0;
             $tempindex = 0;
-
-
-
             $JOB_LIST = array();
             //While loop for getting table values and inserting it to main_table multidimensional array.
             while(!feof($myfile)){
@@ -109,7 +103,6 @@ include 'Job.php';
                 $tempnum++;
             }
             fclose($myfile);
-
             displayValues($JOB_LIST);
             }
             ?>
