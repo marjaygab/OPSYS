@@ -1,0 +1,7 @@
+<5>
+<J1><0><SYSTEM><64><5>
+<J2><1><INTERACTIVE><128><1>
+<J3><2><INTERACTIVE><32><2>
+<J4><3><BATCH><32><8>
+<J5><4><SYSTEM><16><1>
+<J6><5><SYSTEM><16><1>
