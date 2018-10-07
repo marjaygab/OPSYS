@@ -11,7 +11,6 @@ class Job
   public $MEMORY;
   public $FT=0;
   public $FINISH_FLAG = false;
-
   function __construct($JOB_ID_VAL,$AT_VAL,$PRIO,$MEM,$BT_VAL)
   {
     # code...
@@ -20,10 +19,6 @@ class Job
     $this->BT = $BT_VAL;
     $this->PRIORITY = $PRIO;
     $this->MEMORY = $MEM;
-
   }
 }
-
-
-
 ?>
