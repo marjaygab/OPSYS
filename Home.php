@@ -6,31 +6,311 @@ include 'Job.php';
 <head>
 <title>Multilevel Queue</title>
 <style>
-    table,tr,th,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        margin: 0 auto;
-    }
-    .table-div{
-        text-align: center;
-    }
-    .header{
-        text-align: center;
-    }
-</style>
+
+body {
+  margin: 0;
+  background: linear-gradient(45deg,  #4d648d, #283655);
+  font-family: sans-serif;
+  font-weight: 100;
+   height: 100%;
+	font-family: sans-serif;
+        overflow: auto;
+}
+.container {
+   width: 100%;
+  position: fixed;
+
+  top: 0%;
+  left: 0%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+table {
+    position: fixed;
+    margin-top: 26%;
+    margin-left: 52%;
+  width: 500px;
+  border-collapse: collapse;
+  display: block;
+  overflow: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.upload {
+    position: fixed;
+    margin-top: 20%;
+    margin-left: 52%;
+  width: 500px;
+
+}
+label{
+    font-size: 10px;
+}
+.gantt{
+  position:fixed;
+  margin-top:17%;
+  margin-left: 132%;
+  height: 550px;
+  width: 250px;
+   border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+}
+
+.gantt thead th {
+    background-color: #13547a;
+}
+
+.Q1{
+  position:fixed;
+  margin-top: 26%;
+  margin-left: 90%;
+  width: 150px;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.Q1 tbody{
+    display: block;
+    height: 170px;
+  overflow-y: auto;
+}
+.Q2 tbody{
+    display: block;
+    height: 170px;
+  overflow-y: auto;
+}
+.Q3 tbody{
+    display: block;
+    height: 170px;
+  overflow-y: auto;
+}
+.gantt tbody{
+    display: block;
+    height: 170px;
+  overflow-y: auto;
+}
+
+
+
+.Q2{
+  position:fixed;
+  margin-top: 26%;
+  margin-left: 100%;
+  width: 150px;
+   border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.Q3{
+  position:fixed;
+  margin-top: 26 %;
+  margin-left: 110%;
+  width: 150px;
+    border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 15px;
+}
+th {
+  text-align: left;
+}
+thead th {
+  background-color: #1e1f26;
+}
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+tbody td {
+  position: relative;
+}
+tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+
+
+.input-file-container {
+    display: inline;
+  position: relative;
+  width: 225px;
+  border-radius: 10px;
+}
+.js .input-file-trigger {
+  display: inline;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 15px;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+    font-size: 50px;
+    color: white;
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+input[type=submit] {
+  background-color: #0693cd;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size:16px;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 180px
+}
+input[type=submit] :hover + .input-file-trigger,
+input[type=submit]:focus + .input-file-trigger,
+input[type=submit]:hover,
+input[type=submit]:focus {
+  background: #1e1f26;
+  color: #fff;
+}
+
+
+
+
+
+
+
+/* header CSS */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+:root {
+	/* Base font size */
+	font-size: 10px;
+
+	/* Heading height variable*/
+	--heading-height: 30em;
+}
+
+
+
+header {
+	position: fixed;
+	width: 100%;
+	height: var(--heading-height);
+}
+
+/* Create angled background with 'before' pseudo-element */
+header::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 5em;
+	width: 100%;
+	height: calc(var(--heading-height) + 5em);
+	z-index: -1;
+	transform: skewY(-2.5deg);
+	background:
+		linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+		url(https://wallpaper-house.com/data/out/7/wallpaper2you_170209.jpg) no-repeat center,
+		linear-gradient(#4e4376, #2b5876);
+	background-size: cover;
+	border-bottom: .2em solid #fff;
+}
+
+h1 {
+	font-size: calc(2.8em + 2.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 0 0 0 4.5rem;
+	text-shadow: .022em .022em .022em #111;
+	color: #fff;
+        margin-bottom: 0px;
+}
+
+
+h2 {
+	font-size:30px;
+	font-weight: 500;
+	letter-spacing: .01em;
+	padding: 0 0 0 4.5rem;
+	text-shadow: .022em .022em .022em #111;
+	color: #fff;
+}
+
+main {
+	padding: calc(var(--heading-height) + 1.5vw) 4em 0;
+}
+
+
+
+
+    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Multilevel Queue</h1>
-    </div>
-    <div class="table-div">
-        <form enctype="multipart/form-data" action="Home.php" method="POST">
-            <input accept='.txt' type="file" name="data-file"/>
-            <input type="submit" name="upload"/>
-        </form>
+    <header>
+	<h1>Multilevel Queue</h1>
+        <h2>&#8226 First Come First Serve &#8226 Shortest Remaining Time First &#8226 Preemptive Priority &#8226</h2>
+</header>
+    <div class="container">
+
+       <div class="upload">
+<form  enctype="multipart/form-data" action="Home.php" method="POST">
+  <div class="input-file-container">
+    <input class="input-file" id="my-file" type="file" name="data-file" accept='.txt'>
+    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+    <input type="submit" name="upload"/>
+  </div>
+
+  <p class="file-return"></p>
+
+</form>
+</div>
         <table>
+            <thead>
         <tr>
-            <th colspan="7">Table</th>
+            <th colspan="7"><center>Uploaded Data</center></th>
         </tr>
         <tr>
             <th>JOB</th>
@@ -41,6 +321,7 @@ include 'Job.php';
             <th>Priority</th>
             <th>FT</th>
         </tr>
+            </thead>
             <?php
                 if(isset($_POST['upload'])){
 
@@ -110,6 +391,13 @@ include 'Job.php';
                       return  NULL;
                     }
 
+                    function debug_to_console( $data ) {
+                      $output = $data;
+                      if ( is_array( $output ) )
+                          $output = implode( ',', $output);
+
+                      echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+                    }
                     //Sort interactive queue according to SRTF algo (BT wise)
                     function srtfSort($interactive_queue){
                         usort($interactive_queue,"ascendingBT");
@@ -159,7 +447,14 @@ include 'Job.php';
                     }
 
                     function ascendingFinish($JOB1,$JOB2){
-                      return strcmp(($JOB1->JOB_ID),($JOB2->JOB_ID));
+                      $temp1 = $JOB1->JOB_ID;
+                      $temp2 = $JOB2->JOB_ID;
+                      preg_match_all('!\d+!', $temp1, $matches);
+                      $var1 = implode(' ', $matches[0]);
+
+                      preg_match_all('!\d+!', $temp2, $matches);
+                      $var2 = implode(' ', $matches[0]);
+                      return $var1>=$var2;
                     }
 
 
@@ -207,6 +502,7 @@ include 'Job.php';
             //echo $selected_job->JOB_ID;
 
             while (!$finish_flag) {
+
               $selected_job = findJob($time_counter,$JOB_LIST);
               if (!is_null($selected_job)) {
                 switch ($selected_job->PRIORITY_Q) {
@@ -223,7 +519,10 @@ include 'Job.php';
                         break;
                   }
               }
-
+              for ($i=0; $i < count($interactive_queue); $i++) {
+                // code...
+                debug_to_console("t= ".$time_counter.",".$interactive_queue[$i]->JOB_ID . "," . $interactive_queue[$i]->BT);
+              }
               if (count($system_queue) != 0) {
                 // code...
                 $system_queue[0]->FT = $time_counter+1;
@@ -248,8 +547,12 @@ include 'Job.php';
                 $finish_flag = true;
                 break;
               }
+
                   $time_counter++;
             }
+
+
+
             $finish_queue = finishSort($finish_queue);
             displayValues($JOB_LIST,$finish_queue,$bt_temp_list);
             // echo "</br>";
@@ -258,6 +561,112 @@ include 'Job.php';
             }
             ?>
     </table>
+
+
+     <table class="gantt">
+            <thead>
+                <tr>
+                    <th colspan="2"><center>Gantt Chart</center></th>
+
+                </tr>
+		<tr>
+                    <th><center>Time</center></th>
+                    <th><center>Job</center></th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+
+
+                <table class="Q1">
+            <thead>
+                <tr>
+                    <th colspan="1"><center>Q1</center></th>
+                    <th colspan="2">FCFS</th>
+                </tr>
+		<tr>
+                    <th><center>JOB</center></th>
+                    <th><center>AT</center></th>
+                    <th><center>BT</center></th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+
+                        <table class="Q2">
+            <thead>
+                <tr>
+                    <th colspan="1"><center>Q2</center></th>
+                    <th colspan="2">SRTF</th>
+                </tr>
+		<tr>
+                    <th><center>JOB</center></th>
+                    <th><center>AT</center></th>
+                    <th><center>BT</center></th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+
+                        <table class="Q3">
+            <thead>
+                <tr>
+                    <th colspan="1"><center>Q3</center></th>
+                    <th colspan="2">PP</th>
+                </tr>
+		<tr>
+                    <th><center>JOB</center></th>
+                    <th><center>AT</center></th>
+                    <th><center>BT</center></th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+
+
     </div>
+     <script>
+   document.querySelector("html").classList.add('js');
+
+var fileInput  = document.querySelector( ".input-file" ),
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+
+button.addEventListener( "keydown", function( event ) {
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {
+        fileInput.focus();
+    }
+});
+button.addEventListener( "click", function( event ) {
+   fileInput.focus();
+   return false;
+});
+fileInput.addEventListener( "change", function( event ) {
+    the_return.innerHTML = this.value;
+});
+        </script>
 </body>
 </html>
