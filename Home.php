@@ -60,8 +60,17 @@ include 'Job.php';
                         sort($temparray);
                         return $temparray[count($JOB_LIST)-1];
                     }
+
+                    function copyBT($JOB_LIST){
+                      $bt_temp_list = array();
+                      for ($i=0; $i < count($JOB_LIST); $i++) {
+                        // code...
+                        array_push($bt_temp_list,$JOB_LIST[$i]->BT);
+                      }
+                      return $bt_temp_list;
+                    }
                      //For loop to display the stored values.
-                    function displayValues($JOB_LIST,$finish_queue){
+                    function displayValues($JOB_LIST,$finish_queue,$bt_temp_list){
                           for($i=0;$i<count($JOB_LIST);$i++){
                             echo "<tr>";
                                 echo "<td>";
@@ -77,7 +86,7 @@ include 'Job.php';
                                 echo $JOB_LIST[$i]->MEMORY . ' KB';
                                 echo "</td>";
                             echo "<td>";
-                                echo $JOB_LIST[$i]->BT;;
+                                echo $bt_temp_list[$i];
                                 echo "</td>";
                             echo "<td>";
                                 echo $JOB_LIST[$i]->PRIO;
@@ -193,6 +202,8 @@ include 'Job.php';
             $finish_flag = false;
             $finish_queue = array();
             $selected_job = findJob($time_counter,$JOB_LIST);
+            $bt_temp_list = array();
+            $bt_temp_list = copyBT($JOB_LIST);
             //echo $selected_job->JOB_ID;
 
             while (!$finish_flag) {
@@ -240,7 +251,7 @@ include 'Job.php';
                   $time_counter++;
             }
             $finish_queue = finishSort($finish_queue);
-            displayValues($JOB_LIST,$finish_queue);
+            displayValues($JOB_LIST,$finish_queue,$bt_temp_list);
             // echo "</br>";
             // $batch_queue = ppSort($batch_queue);
             // print_r($batch_queue);
