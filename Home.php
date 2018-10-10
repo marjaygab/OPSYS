@@ -316,9 +316,9 @@ include 'Functions.php';
     <script src="jquery-3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#execute_btn').click(function() {
-          $('#t_body').load('Execute.php');
-        });
+        // $('#execute_btn').click(function() {
+        //   $('#t_body').load('Execute.php');
+        // });
 
         $('#step_btn').click(function() {
           $('#t_body').load('Step.php');
@@ -326,6 +326,27 @@ include 'Functions.php';
           $('#fcfs_chart').load('FCFS_Queue.php');
           $('#srtf_chart').load('SRTF_Queue.php');
           $('#pp_chart').load('PP_Queue.php');
+        });
+
+        $('#execute_btn').click(function(){
+          var time = 0;
+          myInterval = setInterval(function(){
+            var isFinish = $('#finish_label').html();
+            if(isFinish){
+              clearInterval(myInterval);
+            }else{
+              $('#t_body').load('Step.php');
+              $('#gantt_chart').load('Gantt.php');
+              $('#fcfs_chart').load('FCFS_Queue.php');
+              $('#srtf_chart').load('SRTF_Queue.php');
+              $('#pp_chart').load('PP_Queue.php');
+              $('#title').html(time);
+
+              time++;
+            }
+            $('#finish_label').load('isFinish.php');
+          },1000);
+
         });
       });
     </script>
@@ -339,6 +360,7 @@ include 'Functions.php';
           </div>
           <p class="file-return"></p>
         </form>
+        <span id="finish_label" hidden></span>
       </div>
       <table>
         <thead>

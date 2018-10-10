@@ -29,13 +29,13 @@ fileInput.addEventListener( "change", function( event ) {
   var execute_btn = document.getElementById('execute-btn');
   var step_btn = document.getElementById('step-btn');
 
-  button.addEventListener("click", function(event){
-    myInterval = setInterval (function(){
-    time ++;
-    //appendRow(j++);
-    title.innerHTML = time;
-    }, 1000);
-  });
+  // button.addEventListener("click", function(event){
+  //   myInterval = setInterval (function(){
+  //   time ++;
+  //   //appendRow(j++);
+  //   title.innerHTML = time;
+  //   }, 1000);
+  // });
 
   function appendRow(j,k) {
     var tbl = document.getElementById('my-table'), // table reference
