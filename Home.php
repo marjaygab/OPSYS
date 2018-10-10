@@ -323,6 +323,9 @@ include 'Functions.php';
         $('#step_btn').click(function() {
           $('#t_body').load('Step.php');
           $('#gantt_chart').load('Gantt.php');
+          $('#fcfs_chart').load('FCFS_Queue.php');
+          $('#srtf_chart').load('SRTF_Queue.php');
+          $('#pp_chart').load('PP_Queue.php');
         });
       });
     </script>
@@ -405,7 +408,7 @@ include 'Functions.php';
                   <th><center>BT</center></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="fcfs_chart">
               </tbody>
             </table>
             <table class="Q2">
@@ -420,7 +423,7 @@ include 'Functions.php';
                   <th><center>BT</center></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="srtf_chart">
               </tbody>
             </table>
             <table class="Q3">
@@ -435,7 +438,7 @@ include 'Functions.php';
                   <th><center>BT</center></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="pp_chart">
               </tbody>
             </table>
             <div class="Q4">
