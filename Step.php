@@ -73,6 +73,7 @@ $selected_job = $_SESSION['selected_job'];
   }else{
     $finish_flag = true;
   }
+  
   if($finish_flag != true){
       $time_counter++;
   }
