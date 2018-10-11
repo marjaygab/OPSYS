@@ -119,7 +119,7 @@ function findJob($AT,$JOB_LIST){
 
   for ($i=0; $i <count($JOB_LIST) ; $i++) {
     # code...
-    if ($AT == ($JOB_LIST[$i]->AT)) {
+    if ($AT == ($JOB_LIST[$i]->AT)+1) {
       # code...
       return $JOB_LIST[$i];
     }
@@ -207,7 +207,7 @@ function ascendingFinish($JOB1,$JOB2){
 
 function isFinish($JOB_LIST,$finish_queue)
 {
-  if (count($JOB_LIST) == $finish_queue) {
+  if (count($JOB_LIST) == count($finish_queue)) {
     // code...
     return true;
   }

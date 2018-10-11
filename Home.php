@@ -5,7 +5,7 @@ include 'Functions.php';
 <html>
   <head>
     <title>Multilevel Queue</title>
-    <style>
+<style>
        @font-face{
        font-family:'digital-7';
        src: url('SAMPLE/digital-7.ttf');
@@ -32,7 +32,7 @@ include 'Functions.php';
           position: fixed;
           margin-top: 21%;
           margin-left: 52%;
-        width: 450px;
+        width: auto;
         height: 300px;
         border-collapse: collapse;
         display: block;
@@ -60,52 +60,62 @@ include 'Functions.php';
         width: 100px;
       }
       .pause{
-             position: fixed;
+          position: fixed;
           margin-top: 45%;
-          margin-left: 75%;
-        width: 100px;
+          margin-left: 79%;
+          width: 100px;
       }
+
       label{
           font-size: 10px;
       }
-      .gantt{
+      .gantt {
         position:fixed;
-        margin-top:11%;
-        margin-left: 138%;
-        height: 500px;
+        margin-top:10%;
+        margin-left: 88%;
+        height: 550px;
         width: 150px;
-        overflow: hidden;
+        overflow: auto;
         border-collapse: collapse;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 
       }
       .Q4 {
          position:fixed;
-        margin-top: 21%;
-        margin-left: 117%;
-        width: 17%;
-       height: 250px;
+        margin-top: 25%;
+        margin-left: 70%;
+        width: 13%;
+        height: 200px;
+        border-radius:20px;
         border-collapse: collapse;
+        background-color:#1e1f26;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       }
       .timer H1{
            align-self:center;
+           margin-top: -10%;
+           margin-left: -23%;
           font-family:'digital-7';
-          font-size: 12em;
+          font-size: 10em;
           color: #d50700;
       }
       .timer H2{
           margin-top: 0;
+          width: 13%;
+          margin-left: -5%;
           align-self:center;
           font-family:'digital-7';
           font-size: 3em;
-          font-weight: 1em;
+          font-weight: 20px;
           color: #fff;
-          background-color:#1e1f26;
+
       }
       .gantt thead th {
           background-color: #13547a;
           width: 250px;
+      }
+      .gantt tbody {
+          overflow: auto;
       }
       .gantt tbody tr {
           width: 250px;
@@ -114,27 +124,63 @@ include 'Functions.php';
           width: 55px;
           align-items: center;
       }
+
+
+ /* --------------------- Q1 Css Design -------------------------  */
       .Q1{
         position:fixed;
         margin-top: 21%;
-        margin-left: 87%;
+        margin-left: 40%;
         width: auto;
         border-collapse: collapse;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+      }
+      .Q1 thead th{
+
+        background-color: #1e3c72;
       }
       .Q1 tbody{
           display: block;
-          height: 170px;
+          height: 200px;
+         overflow-y: auto;
+      }
+       .Q1 tbody td  {
+          display: absolute;
+        width: 27%;
         overflow-y: auto;
       }
+
+ /* --------------------- Q2 Css Design -------------------------  */
       .Q2 tbody{
           display: block;
-          height: 170px;
+          height: 200px;
         overflow-y: auto;
       }
+      .Q2 tbody tr  {
+          display: absolute;
+        width: 100%;
+        overflow-y: auto;
+      }
+       .Q2 tbody td  {
+          display: absolute;
+        width: 27%;
+        overflow-y: auto;
+      }
+      .Q2 thead th{
+        background-color:#2a5298;
+      }
+
+/* --------------------- Q3 Css Design -------------------------  */
       .Q3 tbody{
           display: block;
-          height: 170px;
+          height: 200px;
+        overflow-y: auto;
+      }
+
+       .Q3 tbody td  {
+          display: absolute;
+        width: 27%;
         overflow-y: auto;
       }
       .gantt tbody{
@@ -145,22 +191,28 @@ include 'Functions.php';
       .Q2{
         position:fixed;
         margin-top: 21%;
-        margin-left: 97%;
+        margin-left: 50%;
         width: auto;
+        border-radius: 20px;
          border-collapse: collapse;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       }
       .Q3{
         position:fixed;
         margin-top: 21%;
-        margin-left: 107%;
+        margin-left: 60%;
         width: auto;
+       border-radius: 20px;
           border-collapse: collapse;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       }
+      .Q3 thead th{
+         background-color: #2c3e50;
+
+      }
       th,
       td {
-        padding: 10px;
+        padding: 8px;
         background-color: rgba(255, 255, 255, 0.2);
         color: #fff;
         display: absolute;
@@ -308,9 +360,249 @@ include 'Functions.php';
       	text-shadow: .022em .022em .022em #111;
       	color: #fff;
       }
-      main {
-      	padding: calc(var(--heading-height) + 1.5vw) 4em 0;
-      }
+
+
+
+ /*-- Step Button CSS ---------*/
+ @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary-500: #FFEB3B;
+  --color-primary-600: #FDD835;
+  --color-primary-900: #F57F17;
+  --color-secondary-500: #009688;
+  --color-secondary-900: #004D40;
+  --font-primary: "Montserrat", sans-serif;
+}
+
+
+
+.btn {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1.5rem 4.5rem;
+  background: #48c6ef ;
+  color: white;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: normal;
+  border: 0;
+  border-radius: 2rem;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  transition: background 250ms, box-shadow 250ms;
+}
+.btn:hover {
+  background:#489cef;
+  box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+}
+.btn:active, .btn:focus {
+  outline: none;
+}
+.btn:active {
+  box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.8);
+}
+
+.btn .text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn .dot {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  width: 200px;
+  height: 10px;
+  -webkit-transform-origin: 5px 5px;
+          transform-origin: 5px 5px;
+  pointer-events: none;
+}
+.btn .dot:nth-child(1) {
+  top: 50%;
+  left: 100%;
+  -webkit-transform: translate3d(-10px, -5px, 0);
+          transform: translate3d(-10px, -5px, 0);
+}
+.btn .dot:nth-child(2) {
+  bottom: 0;
+  left: 100%;
+  -webkit-transform: translate3d(-10px, 0, 0) rotate(45deg);
+          transform: translate3d(-10px, 0, 0) rotate(45deg);
+}
+.btn .dot:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate3d(-5px, 0, 0) rotate(90deg);
+          transform: translate3d(-5px, 0, 0) rotate(90deg);
+}
+.btn .dot:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.btn .dot:nth-child(5) {
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate3d(0, -5px, 0) rotate(180deg);
+          transform: translate3d(0, -5px, 0) rotate(180deg);
+}
+.btn .dot:nth-child(6) {
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+.btn .dot:nth-child(7) {
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate3d(-5px, 0, 0) rotate(270deg);
+          transform: translate3d(-5px, 0, 0) rotate(270deg);
+}
+.btn .dot:nth-child(8) {
+  top: 0;
+  left: 100%;
+  -webkit-transform: translate3d(-10px, 0, 0) rotate(315deg);
+          transform: translate3d(-10px, 0, 0) rotate(315deg);
+}
+.btn .dot::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary-500);
+  border-radius: 50%;
+  offset-path: path("M0 1c7.1 0 10.7 2 14.3 4s7.1 4 14.3 4 10.7-2 14.3-4 7.2-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4 10.7-2 14.3-4 7.1-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4 10.7-2 14.3-4 7.1-4 14.3-4 10.7 2 14.3 4 7.1 4 14.3 4");
+  offset-distance: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.btn.is-animating .dot::before {
+  -webkit-animation: dot 750ms cubic-bezier(0.215, 0.61, 0.355, 1);
+          animation: dot 750ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@-webkit-keyframes dot {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes dot {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+
+/* button execute CSS design */
+
+
+.btns {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1.5rem 4.5rem;
+  background: #3498db;
+  color: white;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: normal;
+  border: 0;
+  border-radius: 2rem;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  transition: background 250ms, box-shadow 250ms;
+}
+
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
+
+
+
+.third {
+  border-color: #0d924f;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #0d924f inset, 0 0 0 0 #0d924f;
+  transition: all 150ms ease-in-out;
+}
+.third:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+}
+
+
+/* pause button css design */
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
+.btnpause {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1.5rem 4.5rem;
+  background: #3498db;
+  color: white;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: normal;
+  border: 0;
+  border-radius: 2rem;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  transition: background 250ms, box-shadow 250ms;
+}
+.btnpause:hover {
+	animation: bounce 1s;
+}
   </style>
   <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
   </head>
@@ -327,18 +619,24 @@ include 'Functions.php';
         // });
         var time = -1;
         $('#step_btn').click(function() {
-          $('#t_body').load('Step.php');
-          $('#gantt_chart').load('Gantt.php');
-          $('#fcfs_chart').load('FCFS_Queue.php');
-          $('#srtf_chart').load('SRTF_Queue.php');
-          $('#pp_chart').load('PP_Queue.php');
-          if(time != -1){
-            $('#title').html(time);
+
+          var isFinish = $('#finish_label').html();
+          if(isFinish != true){
+            $('#t_body').load('Step.php');
+            $('#gantt_chart').load('Gantt.php');
+            $('#fcfs_chart').load('FCFS_Queue.php');
+            $('#srtf_chart').load('SRTF_Queue.php');
+            $('#pp_chart').load('PP_Queue.php');
+              if(time != -1){
+                $('#title').html(time);
+              }
+              else {
+                $('#title').html(0);
+              }
+              time++;
           }
-          else {
-            $('#title').html(0);
-          }
-          time++;
+          $('#finish_label').load('isFinish.php');
+
         });
 
         $('#pause_btn').click(function() {
@@ -408,27 +706,47 @@ include 'Functions.php';
           <div id="step_div"></div>
         </tbody>
               </table>
-              <div class="Execute">
+
+                <!-- <form action="Home.php" method="post"> -->
+
+                   <div class="Execute">
                 <!-- <form action="Home.php" method="post"> -->
                   <div class="input-file-container">
-                    <button id="execute_btn" type="submit" name="execute" value="Execute" class="execbutton">Execute</button>
+                      <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third">Execute</button>
                   </div>
                 <!-- </form> -->
               </div>
               <div class="step">
                 <!-- <form action="Home.php" method="post"> -->
                   <div class="input-file-container">
-                    <button id="step_btn" type="submit" name="Step" value="Step">Step</button>
+
+                      <button id="pause_btn" type="submit" name="Step" value="Step" class="btnpause">Pause</button>
+                </div>
+
+
+
                   </div>
-                <!-- </form> -->
-              </div>
-              <div class="pause">
+           <div class="pause">
                 <!-- <form action="Home.php" method="post"> -->
                   <div class="input-file-container">
-                    <button id="pause_btn" type="submit" name="pause" value="step">Pause</button>
+
+                     <button id="step_btn" type="submit" name="Step" value="Step" class="btn">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="text">Step</span>
+</button>
+                </div>
+
+
+
                   </div>
-                <!-- </form> -->
-              </div>
+    </div>
               <table class="gantt" id="my-table">
                 <thead>
                   <tr>
@@ -492,13 +810,23 @@ include 'Functions.php';
             <div class="Q4">
               <div class="timer">
                 <h2 style="font-family: 'Orbitron', sans-serif;">TIMER</h2>
-                <h1 id="title" style="font-family: 'Orbitron', sans-serif;">0</h1>
-                <button id="my-button" >Test</button>
-                <button id="my-5thbutton">5x</button>
-                <input type="button" value="Add row" onclick="javascript:appendRow()" class="append_row">
+                <h1 id="title" style="font-family: 'Orbitron', sans-serif;">00</h1>
+
+
               </div>
             </div>
           </div>
     <script type="text/javascript" src="JSFunctions.js"></script>
+     <script>var $btn = document.querySelector('.btn');
+
+$btn.addEventListener('click', function (e) {
+  window.requestAnimationFrame(function () {
+    $btn.classList.remove('is-animating');
+
+    window.requestAnimationFrame(function () {
+      $btn.classList.add('is-animating');
+    });
+  });
+});</script>
 </body>
 </html>
