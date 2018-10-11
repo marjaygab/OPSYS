@@ -1,118 +1,208 @@
+<?php
+include 'Functions.php';
+ ?>
 <html>
-<head>
-<title>Multilevel Queue</title>
-<style>
-    table,tr,th,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        margin: 0 auto;
-    }
-    .table-div{
-        text-align: center;
-    }
-    .header{
-        text-align: center;
-    }
-</style>
-</head>
-<body>
-    <div class="header">
-        <h1>Multilevel Queue</h1>
-    </div>
-    <div class="table-div">
-        <form enctype="multipart/form-data" action="Home.php" method="POST">
-            <input accept='.txt' type="file" name="data-file"/>
+  <head>
+    <title>Multilevel Queue</title>
+    <link rel="stylesheet" href="Main.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <script src="jquery-3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var time = -1;
+        $('#step_btn').click(function() {
+          var isFinish = $('#finish_label').html();
+          if(isFinish != true){
+            $('#t_body').load('Step.php');
+            $('#gantt_chart').load('Gantt.php');
+            $('#fcfs_chart').load('FCFS_Queue.php');
+            $('#srtf_chart').load('SRTF_Queue.php');
+            $('#pp_chart').load('PP_Queue.php');
+              if(time != -1){
+                $('#title').html(time);
+              }
+              else {
+                $('#title').html(0);
+              }
+              time++;
+          }
+          $('#finish_label').load('isFinish.php');
+        });
+
+        $('#pause_btn').click(function() {
+        clearInterval(myInterval);
+        });
+
+        $('#execute_btn').click(function(){
+          myInterval = setInterval(function(){
+            var isFinish = $('#finish_label').html();
+            if(isFinish){
+              clearInterval(myInterval);
+            }else{
+              $('#t_body').load('Step.php');
+              $('#gantt_chart').load('Gantt.php');
+              $('#fcfs_chart').load('FCFS_Queue.php');
+              $('#srtf_chart').load('SRTF_Queue.php');
+              $('#pp_chart').load('PP_Queue.php');
+              if(time != -1){
+                $('#title').html(time);
+              }
+              else {
+                $('#title').html(0);
+              }
+              time++;
+            }
+            $('#finish_label').load('isFinish.php');
+          },1000);
+        });
+      });
+  </script>
+  </head>
+  <body>
+    <header style="height:200px;">
+      <h1>Multilevel Queue</h1>
+      <h2> First Come First Serve | Shortest Remaining Time First | Preemptive Priority</h2>
+    </header>
+    <div class="container">
+      <div class="upload">
+        <form  enctype="multipart/form-data" action="Home.php" method="POST">
+          <div class="input-file-container">
+            <input class="input-file" id="my-file" type="file" name="data-file" accept='.txt'>
+            <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
             <input type="submit" name="upload"/>
+          </div>
+          <p class="file-return"></p>
         </form>
-        <table>
+        <span id="finish_label" hidden></span>
+      </div>
+      <table>
+        <thead>
         <tr>
-            <th colspan="6">Table</th>
+          <th colspan="7"><center>Uploaded Data</center></th>
         </tr>
         <tr>
-            <th>JOB</th>
-            <th>AT</th>
-            <th>Priority</th>
-            <th>Memory</th>
-            <th>BT</th>
-            <th>FT</th>
+          <th>JOB</th>
+          <th>AT</th>
+          <th>Priority Queue</th>
+          <th>Memory</th>
+          <th>BT</th>
+          <th>Priority</th>
+          <th>FT</th>
         </tr>
-            <?php
-                if(isset($_POST['upload'])){
-                    
-                    function getLeastAT($main_table){
-                        for($i=0 ; $i < count($main_table) ; $i++){
-                            $temparray[$i] = $main_table[$i]['AT'];
-                        }
-                        sort($temparray);
-                        return $temparray[0];
-                    }
-                    
-                     //For loop to display the stored values.
-                    function displayValues($copy_table,$main_table){
-                          for($i=0;$i<count($copy_table);$i++){
-                        echo "<tr>";
-                            echo "<td>";
-                            echo $copy_table[$i]['PID'];
-                            echo "</td>";
-                        echo "<td>";
-                            echo $copy_table[$i]['AT'];
-                            echo "</td>";
-                        echo "<td>";
-                            echo $copy_table[$i]['PRIORITY'];
-                            echo "</td>";
-                        echo "<td>";
-                            echo $copy_table[$i]['MEMORY'] . ' KB';
-                            echo "</td>";
-                        echo "<td>";
-                            echo $copy_table[$i]['BT'];
-                            echo "</td>";
-                        echo "<td>";
-                            echo $main_table[$i]['FT'];
-                            echo "</td>";
-                        echo "</tr>";
-                    }
-                    }
-                    
-                    
-            //Code for uploading to $_SERVER['DOCUMENT_ROOT']
-            if($_FILES["data-file"]["error"] >0){
-            echo "Error:" . $_FILES["data-file"]["error"] . "<br />";
-            }
-            else{
-               $uploaddir = $_SERVER['DOCUMENT_ROOT'] . '/';
-                $uploadfile = $uploaddir . basename($_FILES['data-file']['name']);
-                $filename = $_FILES["data-file"]["name"];
-                 move_uploaded_file($_FILES["data-file"]["tmp_name"],$uploadfile);
-            }    
-            
-            $myfile = fopen($uploadfile,"r") or die("Unable to open file!");
-            $tempnum = 0;
-            $tempindex = 0;
-                    
-            //While loop for getting table values and inserting it to main_table multidimensional array.
-            while(!feof($myfile)){
-                $line = fgets($myfile);
-                preg_match_all("/<(.*?)>/", $line,$matches);
-                if($tempnum!==0){
-                    $copy_table[$tempindex]["PID"] = $main_table[$tempindex]["PID"] = $matches[1][0];
-                    $copy_table[$tempindex]["AT"] = $main_table[$tempindex]["AT"] = $matches[1][1];
-                    $copy_table[$tempindex]["PRIORITY"] = $main_table[$tempindex]["PRIORITY"] = $matches[1][2];
-                    $copy_table[$tempindex]["MEMORY"] = $main_table[$tempindex]["MEMORY"] = $matches[1][3];
-                    $copy_table[$tempindex]["BT"] = $main_table[$tempindex]["BT"] = $matches[1][4];
-                    $main_table[$tempindex]["FT"] = " ";
-                    $tempindex++;
-                }
-                $tempnum++;   
-            }
-            fclose($myfile);
-                   
-            displayValues($copy_table,$main_table);
-                    
-            
-                    
-            }
-            ?>
-    </table>
+      </thead>
+        <tbody id="t_body">
+          <?php
+           if(isset($_POST['upload'])){
+             initializeData();
+           }
+          ?>
+          <div id="execute_div"></div>
+          <div id="step_div"></div>
+        </tbody>
+      </table>
+      <div class="Execute">
+        <div class="input-file-container">
+          <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third">Execute</button>
+        </div>
+      </div>
+      <div class="step">
+        <div class="input-file-container">
+          <button id="pause_btn" type="submit" name="Step" value="Step" class="btnpause">Pause</button>
+        </div>
+      </div>
+      <div class="pause">
+        <div class="input-file-container">
+          <button id="step_btn" type="submit" name="Step" value="Step" class="btn">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="text">Step</span>
+          </button>
+        </div>
+      </div>
     </div>
-</body>
+    <table class="gantt" id="my-table">
+      <thead>
+        <tr>
+          <th colspan="2"><center>Gantt Chart</center></th>
+        </tr>
+        <tr>
+          <th><center>Time</center></th>
+          <th><center>Job</center></th>
+        </tr>
+      </thead>
+      <tbody id="gantt_chart">
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+    <table class="Q1">
+      <thead>
+        <tr>
+          <th colspan="1"><center>Q1</center></th>
+          <th colspan="2">FCFS</th>
+        </tr>
+        <tr>
+          <th><center>JOB</center></th>
+          <th><center>AT</center></th>
+          <th><center>BT</center></th>
+        </tr>
+      </thead>
+      <tbody id="fcfs_chart">
+      </tbody>
+    </table>
+    <table class="Q2">
+      <thead>
+        <tr>
+          <th colspan="1"><center>Q2</center></th>
+          <th colspan="2">SRTF</th>
+        </tr>
+        <tr>
+          <th><center>JOB</center></th>
+          <th><center>AT</center></th>
+          <th><center>BT</center></th>
+        </tr>
+      </thead>
+      <tbody id="srtf_chart">
+      </tbody>
+    </table>
+    <table class="Q3">
+      <thead>
+        <tr>
+          <th colspan="1"><center>Q3</center></th>
+          <th colspan="2">PP</th>
+          </tr>
+          <tr>
+            <th><center>JOB</center></th>
+            <th><center>AT</center></th>
+            <th><center>BT</center></th>
+          </tr>
+        </thead>
+        <tbody id="pp_chart">
+        </tbody>
+      </table>
+      <div class="Q4">
+        <div class="timer">
+          <h2 style="font-family: 'Orbitron', sans-serif;">TIMER</h2>
+          <h1 id="title" style="font-family: 'Orbitron', sans-serif;">00</h1>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="JSFunctions.js"></script>
+    <script>var $btn = document.querySelector('.btn');
+      $btn.addEventListener('click', function (e) {
+        window.requestAnimationFrame(function () {
+          $btn.classList.remove('is-animating');
+          window.requestAnimationFrame(function () {
+            $btn.classList.add('is-animating');
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

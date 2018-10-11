@@ -1,6 +1,6 @@
-    <5>
-    <J1><0><SYSTEM><64><5>
-    <J2><1><INTERACTIVE><128><1>
-    <J3><2><INTERACTIVE><32><2>
-    <J4><3><BATCH><32><8>
-    <J5><4><SYSTEM><16><1>
+<5>
+<J1><3><INTERACTIVE><64><5><1>
+<J2><4><INTERACTIVE><128><8><3>
+<J3><5><SYSTEM><32><2><5>
+<J4><6><SYSTEM><32><10><4>
+<J5><7><INTERACTIVE><16><1><2>
