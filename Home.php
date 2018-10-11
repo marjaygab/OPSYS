@@ -10,17 +10,25 @@ include 'Functions.php';
     <script type="text/javascript">
       $(document).ready(function() {
         var time = -1;
-
-        function disableButtons(exec,step,pause){
+        var selected_speed = $('#speed_select').val();
+        //toggleControls(true,true,true,false,false);
+        function toggleControls(exec,step,pause,ss,list){
           $('#execute_btn').attr('disabled',exec);
           $('#step_btn').attr('disabled',step);
           $('#pause_btn').attr('disabled',pause);
+          $('#set_speed').attr('disabled',ss);
+          $('#set_speed').attr('disabled',ss);
+          $('#speed_select').attr('disabled',list);
         }
 
-        //disableButtons(true,true,true);
+        $('#set_speed').click(function() {
+          selected_speed = $('#speed_select').val();
+          alert(selected_speed + ' ms simulation speed set!');
+        });
+
 
         $('#step_btn').click(function() {
-          disableButtons(false,false,true);
+          toggleControls(false,false,true,true,true);
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
             $('#t_body').load('Step.php');
@@ -40,12 +48,12 @@ include 'Functions.php';
         });
 
         $('#pause_btn').click(function() {
-          disableButtons(false,false,true);
+          toggleControls(false,false,true,false,false);
         clearInterval(myInterval);
         });
 
         $('#execute_btn').click(function(){
-          disableButtons(true,true,false);
+          toggleControls(true,true,false,true,true);
           myInterval = setInterval(function(){
             var isFinish = $('#finish_label').html();
             $('#execute_btn').prop('disabled',true);
@@ -69,7 +77,7 @@ include 'Functions.php';
               time++;
             }
             $('#finish_label').load('isFinish.php');
-          },1000);
+          },selected_speed);
         });
       });
   </script>
@@ -208,6 +216,14 @@ include 'Functions.php';
         <div class="timer">
           <h2 style="font-family: 'Orbitron', sans-serif;">TIMER</h2>
           <h1 id="title" style="font-family: 'Orbitron', sans-serif;">00</h1>
+        </div>
+        <div class="choice_group" name="group">
+          <select id="speed_select" class="list_drop">
+            <option value="1000" selected>1000 ms</option>
+            <option value="500">500 ms</option>
+            <option value="250">250 ms</option>
+          </select>
+          <span><button class="btns-small" id="set_speed" name="set_speed" value="set_speed">Set</button></span>
         </div>
       </div>
     </div>
