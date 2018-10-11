@@ -10,6 +10,9 @@ include 'Functions.php';
     <script type="text/javascript">
       $(document).ready(function() {
         var time = -1;
+        var pause_btn_pressed = false;
+        var step_btn_pressed = false;
+        var execute_btn_pressed = false;
         $('#step_btn').click(function() {
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
@@ -78,7 +81,7 @@ include 'Functions.php';
       <table>
         <thead>
         <tr>
-          <th colspan="7"><center>Uploaded Data</center></th>
+          <th colspan="9"><center>Uploaded Data</center></th>
         </tr>
         <tr>
           <th>JOB</th>
@@ -88,6 +91,8 @@ include 'Functions.php';
           <th>BT</th>
           <th>Priority</th>
           <th>FT</th>
+          <th>TT</th>
+          <th>WT</th>
         </tr>
       </thead>
         <tbody id="t_body">
