@@ -6,14 +6,25 @@ include 'Functions.php';
     <title>Multilevel Queue</title>
     <link rel="stylesheet" href="Main.css">
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-    <script src="jquery-3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="Others\jquery-3.3.1\jquery-3.3.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         var time = -1;
         var pause_btn_pressed = false;
         var step_btn_pressed = false;
         var execute_btn_pressed = false;
+        $('#execute_btn').prop('disable',false);
+        $('#step_btn').prop('disable',false);
+        $('#pause_btn').prop('disable',true);
+
         $('#step_btn').click(function() {
+          pause_btn_pressed = false;
+          step_btn_pressed = true;
+          execute_btn_pressed = false;
+
+          $('#pause_btn').prop('disable',true);
+          $('#execute_btn').prop('disable',false);
+
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
             $('#t_body').load('Step.php');
@@ -33,10 +44,17 @@ include 'Functions.php';
         });
 
         $('#pause_btn').click(function() {
+          $('#execute_btn').prop('disable',false);
+          $('#pause_btn').prop('disable',true);
+          $('#step_btn').prop('disable',false);
         clearInterval(myInterval);
         });
 
         $('#execute_btn').click(function(){
+          $('#execute_btn').prop('disable',true);
+          $('#step_btn').prop('disable',true);
+          $('#pause_btn').prop('disable',false);
+
           myInterval = setInterval(function(){
             var isFinish = $('#finish_label').html();
             if(isFinish){
