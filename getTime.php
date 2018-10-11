@@ -1,4 +1,4 @@
 <?php
-session_start();
-echo $_SESSION['time_counter'];
+  session_start();
+  echo $_SESSION['time_counter'];
  ?>

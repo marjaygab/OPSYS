@@ -10,8 +10,6 @@ $finish_queue = $_SESSION['finish_queue'];
 $_SESSION['selected_job'] = findJob($time_counter,$JOB_LIST);
 $selected_job = $_SESSION['selected_job'];
 $executed_job = $_SESSION['executed_job'];
-// $GANTT_FT = $_SESSION['GANTT_FT'];
-// $GANTT_JOB_ID = $_SESSION['GANTT_JOB_ID'];
 
 
   if(isFinish($JOB_LIST,$finish_queue) == false){
@@ -21,49 +19,40 @@ $executed_job = $_SESSION['executed_job'];
       switch ($selected_job->PRIORITY_Q) {
         case 'SYSTEM':
           array_push($system_queue,$selected_job);
-          //display in respective queue
           break;
         case 'INTERACTIVE':
           array_push($interactive_queue,$selected_job);
           $interactive_queue = srtfSort($interactive_queue);
-          //display in respective queue
             break;
         case 'BATCH':
           array_push($batch_queue,$selected_job);
           $batch_queue = ppSort($batch_queue);
-          //display in respective queue
               break;
         }
-    }else {
-      //debug_to_console('Null at Time' . $_SESSION['time_counter']);
     }
 
     if (count($system_queue) != 0) {
       $system_queue[0]->FT = $time_counter;
       $system_queue[0]->BT -= 1;
       $executed_job = $system_queue[0];
-      //echo '<script type="text/javascript"> appendRow(' . $system_queue[0]->JOB_ID . "," . $system_queue[0]->FT . ');</script>';
+
       if ($system_queue[0]->BT == 0) {
         array_push($finish_queue,array_shift($system_queue));
-        //display in gantt chart
-      }//else
-      // display in gantt chart
-    }elseif (count($interactive_queue) != 0) {
-      // code...
 
+      }
+
+    }elseif (count($interactive_queue) != 0) {
       $interactive_queue[0]->FT = $time_counter;
       $interactive_queue[0]->BT -= 1;
       $executed_job = $interactive_queue[0];
-      //echo '<script type="text/javascript"> appendRow(' . $interactive_queue[0]->JOB_ID . "," . $interactive_queue[0]->FT . ');</script>';
       if ($interactive_queue[0]->BT == 0) {
         array_push($finish_queue,array_shift($interactive_queue));
       }
     }elseif(count($batch_queue) != 0) {
 
-        $batch_queue[0]->FT = $time_counter;
-        $batch_queue[0]->BT -= 1;
-        $executed_job = $batch_queue[0];
-      //echo '<script type="text/javascript"> appendRow(' . $batch_queue[0]->JOB_ID . "," . $batch_queue[0]->FT . ');</script>';
+      $batch_queue[0]->FT = $time_counter;
+      $batch_queue[0]->BT -= 1;
+      $executed_job = $batch_queue[0];
       if ($batch_queue[0]->BT == 0) {
         array_push($finish_queue,array_shift($batch_queue));
       }
@@ -94,8 +83,7 @@ $_SESSION['time_counter'] = $time_counter;
 $_SESSION['finish_flag']  = $finish_flag;
 $_SESSION['finish_queue'] = $finish_queue;
 $_SESSION['executed_job'] = $executed_job;
-// $_SESSION['GANTT_FT'] = $GANTT_FT;
-// $_SESSION['GANTT_JOB_ID'] = $GANTT_JOB_ID;
+
 displayValues($_SESSION['JOBS'],$_SESSION['finish_queue'],$_SESSION['bt_temp_list']);
 
  ?>

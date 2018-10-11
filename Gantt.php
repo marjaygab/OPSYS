@@ -11,7 +11,4 @@ for ($i=0; $i < count($_SESSION['GANTT_JOB_ID']); $i++) {
   echo '</td>';
   echo '</tr>';
 }
-
-
-
  ?>
