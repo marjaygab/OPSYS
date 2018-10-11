@@ -17,7 +17,7 @@ include 'Functions.php';
           $('#pause_btn').attr('disabled',pause);
         }
 
-        disableButtons(false,false,true);
+        //disableButtons(true,true,true);
 
         $('#step_btn').click(function() {
           disableButtons(false,false,true);
@@ -112,6 +112,7 @@ include 'Functions.php';
           <?php
            if(isset($_POST['upload'])){
              initializeData();
+             echo isset($_POST['upload'])== true ? 'disabled' : '';
            }
           ?>
           <div id="execute_div"></div>
@@ -120,17 +121,17 @@ include 'Functions.php';
       </table>
       <div class="Execute">
         <div class="input-file-container">
-          <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third">Execute</button>
+          <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third" <?php echo (isset($_POST['upload'])== true ? '' : 'disabled'); ?>>Execute</button>
         </div>
       </div>
       <div class="pause">
         <div class="input-file-container">
-          <button id="pause_btn" type="submit" name="pause" value="pause" class="btnpause">Pause</button>
+          <button id="pause_btn" type="submit" name="pause" value="pause" class="btnpause" <?php echo (isset($_POST['upload'])== true ? '' : 'disabled');?>>Pause</button>
         </div>
       </div>
       <div class="step">
         <div class="input-file-container">
-          <button id="step_btn" type="submit" name="Step" value="Step" class="btn">
+          <button id="step_btn" type="submit" name="Step" value="Step" class="btn" <?php echo (isset($_POST['upload']) == true ? '' : 'disabled');?>>
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>

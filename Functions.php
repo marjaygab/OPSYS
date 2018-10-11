@@ -1,7 +1,6 @@
 <?php
 include 'Job.php';
 session_start();
-
 function getLeastAT($JOB_LIST){
     for($i=0 ; $i < count($JOB_LIST) ; $i++){
         $temparray[$i] = $JOB_LIST[$i]->AT;
@@ -216,7 +215,9 @@ function initializeData(){
   $_SESSION['GANTT_FT'] = array();
   $_SESSION['GANTT_JOB_ID'] = array();
   $_SESSION['GANTT_LIST'] = array();
-
+  $_SESSION['execute_lock']== false;
+  $_SESSION['step_lock']== false;
+  $_SESSION['pause_lock']== true;
   if($_FILES["data-file"]["error"] >0){
     echo "Error:" . $_FILES["data-file"]["error"] . "<br />";
   }
