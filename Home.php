@@ -59,6 +59,12 @@ include 'Functions.php';
           margin-left: 66%;
         width: 100px;
       }
+      .pause{
+             position: fixed;
+          margin-top: 45%;
+          margin-left: 75%;
+        width: 100px;
+      }
       label{
           font-size: 10px;
       }
@@ -319,17 +325,28 @@ include 'Functions.php';
         // $('#execute_btn').click(function() {
         //   $('#t_body').load('Execute.php');
         // });
-
+        var time = -1;
         $('#step_btn').click(function() {
           $('#t_body').load('Step.php');
           $('#gantt_chart').load('Gantt.php');
           $('#fcfs_chart').load('FCFS_Queue.php');
           $('#srtf_chart').load('SRTF_Queue.php');
           $('#pp_chart').load('PP_Queue.php');
+          if(time != -1){
+            $('#title').html(time);
+          }
+          else {
+            $('#title').html(0);
+          }
+          time++;
+        });
+
+        $('#pause_btn').click(function() {
+        clearInterval(myInterval);
         });
 
         $('#execute_btn').click(function(){
-          var time = 0;
+
           myInterval = setInterval(function(){
             var isFinish = $('#finish_label').html();
             if(isFinish){
@@ -340,8 +357,12 @@ include 'Functions.php';
               $('#fcfs_chart').load('FCFS_Queue.php');
               $('#srtf_chart').load('SRTF_Queue.php');
               $('#pp_chart').load('PP_Queue.php');
-              $('#title').html(time);
-
+              if(time != -1){
+                $('#title').html(time);
+              }
+              else {
+                $('#title').html(0);
+              }
               time++;
             }
             $('#finish_label').load('isFinish.php');
@@ -401,6 +422,13 @@ include 'Functions.php';
                   </div>
                 <!-- </form> -->
               </div>
+              <div class="pause">
+                <!-- <form action="Home.php" method="post"> -->
+                  <div class="input-file-container">
+                    <button id="pause_btn" type="submit" name="pause" value="step">Pause</button>
+                  </div>
+                <!-- </form> -->
+              </div>
               <table class="gantt" id="my-table">
                 <thead>
                   <tr>
@@ -413,8 +441,6 @@ include 'Functions.php';
                 </thead>
                 <tbody id="gantt_chart">
                   <tr>
-                    <td>Hello</td>
-                    <td>Hello</td>
                   </tr>
                 </tbody>
               </table>

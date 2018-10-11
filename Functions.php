@@ -119,7 +119,19 @@ function findJob($AT,$JOB_LIST){
 
   for ($i=0; $i <count($JOB_LIST) ; $i++) {
     # code...
-    if ($AT == $JOB_LIST[$i]->AT) {
+    if ($AT == ($JOB_LIST[$i]->AT)) {
+      # code...
+      return $JOB_LIST[$i];
+    }
+  }
+  return  NULL;
+}
+
+function startedJob($AT,$JOB_LIST){
+
+  for ($i=0; $i <count($JOB_LIST) ; $i++) {
+    # code...
+    if ($AT == (($JOB_LIST[$i]->AT))) {
       # code...
       return $JOB_LIST[$i];
     }
@@ -193,6 +205,16 @@ function ascendingFinish($JOB1,$JOB2){
   return $var1>=$var2;
 }
 
+function isFinish($JOB_LIST,$finish_queue)
+{
+  if (count($JOB_LIST) == $finish_queue) {
+    // code...
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 function initializeData(){
     //Insert Functions
   //Code for uploading to $_SERVER['DOCUMENT_ROOT']
@@ -232,12 +254,14 @@ function initializeData(){
   $_SESSION['system_queue'] = array();
   $_SESSION['interactive_queue'] = array();
   $_SESSION['batch_queue'] = array();
-  $_SESSION['time_counter'] = getLeastAT($_SESSION['JOBS']);
+  $_SESSION['time_counter'] = 0;
   $_SESSION['finish_flag'] = false;
   $_SESSION['finish_queue'] = array();
   $_SESSION['selected_job'] = findJob($_SESSION['time_counter'],$_SESSION['JOBS']);
   $_SESSION['bt_temp_list'] = array();
   $_SESSION['bt_temp_list'] = copyBT($_SESSION['JOBS']);
+  $_SESSION['executed_job'] = NULL;
+
 }
 
 function execute(){
