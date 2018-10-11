@@ -110,9 +110,8 @@ include 'Functions.php';
       </thead>
         <tbody id="t_body">
           <?php
-           if(isset($_POST['upload'])){
+           if(isset($_POST['upload']) && $_FILES["data-file"]["error"] == 0){
              initializeData();
-             echo isset($_POST['upload'])== true ? 'disabled' : '';
            }
           ?>
           <div id="execute_div"></div>
