@@ -6,11 +6,21 @@ include 'Functions.php';
     <title>Multilevel Queue</title>
     <link rel="stylesheet" href="Main.css">
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-    <script src="jquery-3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="Others\jquery-3.3.1\jquery-3.3.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         var time = -1;
+
+        function disableButtons(exec,step,pause){
+          $('#execute_btn').attr('disabled',exec);
+          $('#step_btn').attr('disabled',step);
+          $('#pause_btn').attr('disabled',pause);
+        }
+
+        //disableButtons(true,true,true);
+
         $('#step_btn').click(function() {
+          disableButtons(false,false,true);
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
             $('#t_body').load('Step.php');
@@ -30,12 +40,18 @@ include 'Functions.php';
         });
 
         $('#pause_btn').click(function() {
+          disableButtons(false,false,true);
         clearInterval(myInterval);
         });
 
         $('#execute_btn').click(function(){
+          disableButtons(true,true,false);
           myInterval = setInterval(function(){
             var isFinish = $('#finish_label').html();
+            $('#execute_btn').prop('disabled',true);
+            $('#step_btn').prop('disabled',true);
+            $('#pause_btn').prop('disabled',false);
+
             if(isFinish){
               clearInterval(myInterval);
             }else{
@@ -78,7 +94,7 @@ include 'Functions.php';
       <table>
         <thead>
         <tr>
-          <th colspan="7"><center>Uploaded Data</center></th>
+          <th colspan="9"><center>Uploaded Data</center></th>
         </tr>
         <tr>
           <th>JOB</th>
@@ -88,11 +104,13 @@ include 'Functions.php';
           <th>BT</th>
           <th>Priority</th>
           <th>FT</th>
+          <th>TT</th>
+          <th>WT</th>
         </tr>
       </thead>
         <tbody id="t_body">
           <?php
-           if(isset($_POST['upload'])){
+           if(isset($_POST['upload']) && $_FILES["data-file"]["error"] == 0){
              initializeData();
            }
           ?>
@@ -102,17 +120,17 @@ include 'Functions.php';
       </table>
       <div class="Execute">
         <div class="input-file-container">
-          <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third">Execute</button>
-        </div>
-      </div>
-      <div class="step">
-        <div class="input-file-container">
-          <button id="pause_btn" type="submit" name="Step" value="Step" class="btnpause">Pause</button>
+          <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third" <?php echo (isset($_POST['upload'])== true ? '' : 'disabled'); ?>>Execute</button>
         </div>
       </div>
       <div class="pause">
         <div class="input-file-container">
-          <button id="step_btn" type="submit" name="Step" value="Step" class="btn">
+          <button id="pause_btn" type="submit" name="pause" value="pause" class="btnpause" <?php echo (isset($_POST['upload'])== true ? '' : 'disabled');?>>Pause</button>
+        </div>
+      </div>
+      <div class="step">
+        <div class="input-file-container">
+          <button id="step_btn" type="submit" name="Step" value="Step" class="btn" <?php echo (isset($_POST['upload']) == true ? '' : 'disabled');?>>
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
@@ -194,7 +212,8 @@ include 'Functions.php';
       </div>
     </div>
     <script type="text/javascript" src="JSFunctions.js"></script>
-    <script>var $btn = document.querySelector('.btn');
+    <script>
+    var $btn = document.querySelector('.btn');
       $btn.addEventListener('click', function (e) {
         window.requestAnimationFrame(function () {
           $btn.classList.remove('is-animating');

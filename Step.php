@@ -72,6 +72,7 @@ $executed_job = $_SESSION['executed_job'];
   }
   else{
     $finish_flag = true;
+    solveATBT($JOB_LIST,$_SESSION['bt_temp_list']);
   }
 
 $finish_queue = finishSort($finish_queue);
