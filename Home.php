@@ -10,21 +10,17 @@ include 'Functions.php';
     <script type="text/javascript">
       $(document).ready(function() {
         var time = -1;
-        var pause_btn_pressed = false;
-        var step_btn_pressed = false;
-        var execute_btn_pressed = false;
-        $('#execute_btn').prop('disable',false);
-        $('#step_btn').prop('disable',false);
-        $('#pause_btn').prop('disable',true);
+
+        function disableButtons(exec,step,pause){
+          $('#execute_btn').attr('disabled',exec);
+          $('#step_btn').attr('disabled',step);
+          $('#pause_btn').attr('disabled',pause);
+        }
+
+        disableButtons(false,false,true);
 
         $('#step_btn').click(function() {
-          pause_btn_pressed = false;
-          step_btn_pressed = true;
-          execute_btn_pressed = false;
-
-          $('#pause_btn').prop('disable',true);
-          $('#execute_btn').prop('disable',false);
-
+          disableButtons(false,false,true);
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
             $('#t_body').load('Step.php');
@@ -44,19 +40,18 @@ include 'Functions.php';
         });
 
         $('#pause_btn').click(function() {
-          $('#execute_btn').prop('disable',false);
-          $('#pause_btn').prop('disable',true);
-          $('#step_btn').prop('disable',false);
+          disableButtons(false,false,true);
         clearInterval(myInterval);
         });
 
         $('#execute_btn').click(function(){
-          $('#execute_btn').prop('disable',true);
-          $('#step_btn').prop('disable',true);
-          $('#pause_btn').prop('disable',false);
-
+          disableButtons(true,true,false);
           myInterval = setInterval(function(){
             var isFinish = $('#finish_label').html();
+            $('#execute_btn').prop('disabled',true);
+            $('#step_btn').prop('disabled',true);
+            $('#pause_btn').prop('disabled',false);
+
             if(isFinish){
               clearInterval(myInterval);
             }else{
@@ -128,12 +123,12 @@ include 'Functions.php';
           <button id="execute_btn" type="submit" name="execute" value="Execute" class="btns third">Execute</button>
         </div>
       </div>
-      <div class="step">
+      <div class="pause">
         <div class="input-file-container">
-          <button id="pause_btn" type="submit" name="Step" value="Step" class="btnpause">Pause</button>
+          <button id="pause_btn" type="submit" name="pause" value="pause" class="btnpause">Pause</button>
         </div>
       </div>
-      <div class="pause">
+      <div class="step">
         <div class="input-file-container">
           <button id="step_btn" type="submit" name="Step" value="Step" class="btn">
             <span class="dot"></span>
@@ -217,7 +212,8 @@ include 'Functions.php';
       </div>
     </div>
     <script type="text/javascript" src="JSFunctions.js"></script>
-    <script>var $btn = document.querySelector('.btn');
+    <script>
+    var $btn = document.querySelector('.btn');
       $btn.addEventListener('click', function (e) {
         window.requestAnimationFrame(function () {
           $btn.classList.remove('is-animating');
