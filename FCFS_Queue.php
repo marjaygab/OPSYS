@@ -2,6 +2,7 @@
 include 'Job.php';
 session_start();
 
+
 for ($i=0; $i < count($_SESSION['system_queue']); $i++) {
   // code...
   echo '<tr>';

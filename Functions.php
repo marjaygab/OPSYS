@@ -7,6 +7,38 @@ function findinMem($AT,$JOB_LIST){
   return findJob($AT,$JOB_LIST);
 }
 
+function refactorArray($ready_queue){
+  for ($i=0; $i < sizeof($ready_queue); $i++) {
+    if ($ready_queue[$i] == NULL) {
+      unset($ready_queue[$i]);
+    }
+  }
+  return array_values($ready_queue);
+}
+
+function removefromMem($PHYSICAL_MEM,$job_id){
+  for ($i=0; $i < sizeof($PHYSICAL_MEM); $i++) {
+    if (!$PHYSICAL_MEM[$i]->isempty) {
+      $page = $PHYSICAL_MEM[$i];
+      $job = $page->JOB_OWNER;
+      $page_job_id = $job->JOB_ID;
+
+       if ($job_id == $page_job_id) {
+         $PHYSICAL_MEM[$i]->remove();
+       }
+    }
+  }
+}
+
+
+function search($item,$collection){
+  for ($i=0; $i < sizeof($collection); $i++ ) {
+    if ($item == $collection[$i]->JOB_ID) {
+      return true;
+    }
+  }
+  return false;
+}
 function countEmptyPages($PM)
 {
   $temp = 0;
@@ -316,6 +348,7 @@ function initializeData(){
   $_SESSION['system_queue'] = array();
   $_SESSION['interactive_queue'] = array();
   $_SESSION['batch_queue'] = array();
+  $_SESSION['input_queue'] = array();
   $_SESSION['time_counter'] = 0;
   $_SESSION['finish_flag'] = false;
   $_SESSION['finish_queue'] = array();
@@ -325,5 +358,6 @@ function initializeData(){
   $_SESSION['executed_job'] = NULL;
 
 }
+
 
  ?>
