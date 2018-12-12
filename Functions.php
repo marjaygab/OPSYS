@@ -1,6 +1,22 @@
 <?php
 include 'Job.php';
+include 'Page.php';
 session_start();
+
+function findinMem($AT,$JOB_LIST){
+  return findJob($AT,$JOB_LIST);
+}
+
+function countEmptyPages($PM)
+{
+  $temp = 0;
+  for ($i=0; $i < sizeof($PM); $i++) {
+    if($PM[$i]->isempty){
+      $temp++;
+    }
+  }
+  return $temp;
+}
 function getLeastAT($JOB_LIST){
     for($i=0 ; $i < count($JOB_LIST) ; $i++){
         $temparray[$i] = $JOB_LIST[$i]->AT;
@@ -74,6 +90,26 @@ function displayValues($JOB_LIST,$finish_queue,$bt_temp_list){
         echo "</tr>";
     }
 }
+
+function displayMemValues($PHYSICAL_MEM){
+      echo " ";
+      for($i=0;$i<sizeof($PHYSICAL_MEM);$i++){
+        if(!$PHYSICAL_MEM[$i]->isempty){
+          echo "<tr>";
+              echo "<td>";
+              echo $PHYSICAL_MEM[$i]->JOB_OWNER->JOB_ID;
+              echo "</td>";
+          echo "</tr>";
+        }else{
+          echo "<tr>";
+              echo "<td>";
+              echo "      ";
+              echo "</td>";
+          echo "</tr>";
+        }
+    }
+}
+
 
 function predisplayValues($JOB_LIST){
       for($i=0;$i<count($JOB_LIST);$i++){
@@ -211,13 +247,15 @@ function isFinish($JOB_LIST,$finish_queue)
   }
 }
 function initializeData(){
+  $_SESSION['PM_SIZE'] = 32; //pages
   $_SESSION['JOBS'] = array();
+  $_SESSION['MEMORY'] = array();
   $_SESSION['GANTT_FT'] = array();
   $_SESSION['GANTT_JOB_ID'] = array();
   $_SESSION['GANTT_LIST'] = array();
-  $_SESSION['execute_lock']== false;
-  $_SESSION['step_lock']== false;
-  $_SESSION['pause_lock']== true;
+  $_SESSION['execute_lock'] = false;
+  $_SESSION['step_lock']= false;
+  $_SESSION['pause_lock']= true;
   if($_FILES["data-file"]["error"] >0){
     echo "Error:" . $_FILES["data-file"]["error"] . "<br />";
   }
@@ -247,7 +285,11 @@ function initializeData(){
 
   fclose($myfile);
   predisplayValues($_SESSION['JOBS']);
-
+  for ($i=0; $i < 32; $i++) {
+    $temp = new Page(true);
+    array_push($_SESSION['MEMORY'],$temp);
+  }
+  $_SESSION['ready_queue'] = array();
   $_SESSION['system_queue'] = array();
   $_SESSION['interactive_queue'] = array();
   $_SESSION['batch_queue'] = array();

@@ -1,6 +1,7 @@
 <?php
 include 'Functions.php';
 $JOB_LIST = $_SESSION['JOBS'];
+
 $system_queue = $_SESSION['system_queue'];
 $interactive_queue = $_SESSION['interactive_queue'];
 $batch_queue = $_SESSION['batch_queue'];

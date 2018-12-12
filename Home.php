@@ -31,6 +31,7 @@ include 'Functions.php';
           toggleControls(false,false,true,true,true);
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
+            $('#m_body').load('MemManage.php');
             $('#t_body').load('Step.php');
             $('#gantt_chart').load('Gantt.php');
             $('#fcfs_chart').load('FCFS_Queue.php');
@@ -152,6 +153,18 @@ include 'Functions.php';
         </div>
       </div>
     </div>
+    <table>
+      <thead>
+        <tr>
+            <th colspan="1"><center>Memory</center></th>
+        </tr>
+        <tr>
+          <th>JOB</th>
+        </tr>
+      </thead>
+      <tbody id="m_body">
+      </tbody>
+    </table>
     <table class="gantt" id="my-table">
       <thead>
         <tr>
