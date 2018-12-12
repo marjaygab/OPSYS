@@ -93,18 +93,41 @@ function displayValues($JOB_LIST,$finish_queue,$bt_temp_list){
 
 function displayMemValues($PHYSICAL_MEM){
       echo " ";
+      $temp_counter = 0;
+      $previous = 0;
       for($i=0;$i<sizeof($PHYSICAL_MEM);$i++){
         if(!$PHYSICAL_MEM[$i]->isempty){
           echo "<tr>";
+              echo "<td>";
+              echo $i;
+              echo "</td>";
+              echo "<td>";
+              if($temp_counter != 0){
+                $temp_counter = $temp_counter + 1;
+              }
+              echo $previous . " - " . ($temp_counter+=1);
+              $previous = $temp_counter+1;
+              echo "</td>";
               echo "<td>";
               echo $PHYSICAL_MEM[$i]->JOB_OWNER->JOB_ID;
               echo "</td>";
           echo "</tr>";
         }else{
           echo "<tr>";
-              echo "<td>";
-              echo "      ";
-              echo "</td>";
+            echo "<td>";
+            echo $i;
+            echo "</td>";
+            echo "<td>";
+            if($temp_counter != 0){
+              $temp_counter = $temp_counter + 1;
+            }
+
+            echo $previous . " - " . ($temp_counter+=1);
+            $previous = $temp_counter+1;
+            echo "</td>";
+            echo "<td>";
+            echo "         ";
+            echo "</td>";
           echo "</tr>";
         }
     }

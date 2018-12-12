@@ -16,7 +16,6 @@ if($job_arrived != NULL){
       $required = 1;
     }
     if($remaining >= $required){
-
       for ($i=0; $i < sizeof($PHYSICAL_MEM); $i++) {
         if ($PHYSICAL_MEM[$i]->isempty && $required !=0) {
               $PHYSICAL_MEM[$i]->assign_Job($job_arrived);
@@ -25,13 +24,14 @@ if($job_arrived != NULL){
       }
       displayMemValues($PHYSICAL_MEM);
     }
-
   //}
 }else {
   displayMemValues($PHYSICAL_MEM);
 }
 
-
+for ($i=0; $i < ; $i++) {
+  // code...
+}
 
 
 

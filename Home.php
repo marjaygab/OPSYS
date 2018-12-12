@@ -4,7 +4,7 @@ include 'Functions.php';
 <html>
   <head>
     <title>Multilevel Queue</title>
-    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="style/Main.css">
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     <script src="Others\jquery-3.3.1\jquery-3.3.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -31,7 +31,7 @@ include 'Functions.php';
           toggleControls(false,false,true,true,true);
           var isFinish = $('#finish_label').html();
           if(isFinish != true){
-            $('#m_body').load('MemManage.php');
+            $('#memory').load('MemManage.php');
             $('#t_body').load('Step.php');
             $('#gantt_chart').load('Gantt.php');
             $('#fcfs_chart').load('FCFS_Queue.php');
@@ -64,6 +64,7 @@ include 'Functions.php';
             if(isFinish){
               clearInterval(myInterval);
             }else{
+              $('#memory').load('MemManage.php');
               $('#t_body').load('Step.php');
               $('#gantt_chart').load('Gantt.php');
               $('#fcfs_chart').load('FCFS_Queue.php');
@@ -153,18 +154,7 @@ include 'Functions.php';
         </div>
       </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-            <th colspan="1"><center>Memory</center></th>
-        </tr>
-        <tr>
-          <th>JOB</th>
-        </tr>
-      </thead>
-      <tbody id="m_body">
-      </tbody>
-    </table>
+
     <table class="gantt" id="my-table">
       <thead>
         <tr>
@@ -179,7 +169,186 @@ include 'Functions.php';
         <tr>
         </tr>
       </tbody>
-    </table>
+</table>
+
+      <table class="memo" id="my-table">
+      <thead>
+        <tr>
+          <th colspan="3"><center>Memory Offset</center></th>
+        </tr>
+        <tr>
+          <th><center>Page Number</center></th>
+          <th><center>Offset</center></th>
+      <th><center>Job</center></th>
+        </tr>
+      </thead>
+      <tbody id="memory">
+        <tr>
+            <td><center>0</center></td>
+      <td><center>0 - 1</center></td>
+      <td><center></center></td>
+      </tr>
+              <tr>
+      <td><center>1</center></td>
+      <td><center>2 - 3</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>2</center></td>
+      <td><center>4 - 5</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>3</center></td>
+      <td><center>6 - 7</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>4</center></td>
+      <td><center>8 - 9</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>5</center></td>
+      <td><center>10 - 11</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>6</center></td>
+      <td><center>12 - 13</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>7</center></td>
+      <td><center>14 - 15</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>8</center></td>
+      <td><center>16 - 17</center></td>
+      <td><center></center></td>
+      </tr>
+      <tr>
+      <td><center>9</center></td>
+      <td><center>18 - 19</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>10</center></td>
+      <td><center>20 - 21</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>11</center></td>
+      <td><center>22 - 23</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>12</center></td>
+      <td><center>24 - 25</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>13</center></td>
+      <td><center>26 - 27</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>14</center></td>
+      <td><center>28 - 29</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>15</center></td>
+      <td><center>30 - 31</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>16</center></td>
+      <td><center>32 - 33</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>17</center></td>
+      <td><center>34 - 35</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>18</center></td>
+      <td><center>36 - 37</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>19</center></td>
+      <td><center>38 - 39</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>20</center></td>
+      <td><center>40 - 41</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>21</center></td>
+      <td><center>42 - 43</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>22</center></td>
+      <td><center>44 - 45</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>23</center></td>
+      <td><center>46 - 47</center></td>
+      <td><center></center></td>
+
+        </tr>
+        <tr>
+      <td><center>24</center></td>
+      <td><center>48 - 49</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>25</center></td>
+      <td><center>50 - 51</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>26</center></td>
+      <td><center>52 - 53</center></td>
+      <td><center></center></td>
+      </tr>
+        <tr>
+      <td><center>27</center></td>
+      <td><center>54 - 55</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>28</center></td>
+      <td><center>56 - 57</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>29</center></td>
+      <td><center>58 - 59</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>30</center></td>
+      <td><center>60 - 61</center></td>
+      <td><center></center></td>
+        </tr>
+        <tr>
+      <td><center>31</center></td>
+      <td><center>62 - 63</center></td>
+      <td><center></center></td>
+        </tr>
+
+
+      </tbody>
+</table>
+
     <table class="Q1">
       <thead>
         <tr>
