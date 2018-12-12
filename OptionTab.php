@@ -152,7 +152,7 @@ ul li:hover:nth-child(4) a:after{
   <li>
 
   <li>
-    <a href="Home.php">
+    <a href="CPU/Home.php">
       <i class="fa fa-twitter" aria-hidden="true"></i>
       <span> CPU Scheduling </span>
     </a>
