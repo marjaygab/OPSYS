@@ -83,6 +83,48 @@ include 'Functions.php';
         });
       });
   </script>
+  <style>
+      .back {
+	border: none;
+	background: #3a7999;
+	color: #f2f2f2;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	transition: all 500ms ease;
+}
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
+a {
+color:inherit;
+    text-decoration: none;
+}
+.back:hover {
+	animation: bounce 1s;
+            cursor: pointer;
+}
+      </style>
+      <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "OptionTab.php";
+    };
+</script>
   </head>
   <body>
     <header style="height:200px;">
@@ -94,7 +136,9 @@ include 'Functions.php';
         <form  enctype="multipart/form-data" action="Home.php" method="POST">
           <div class="input-file-container">
             <input class="input-file" id="my-file" type="file" name="data-file" accept='.txt'>
-            <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+
+            <button class="back" onClick="location.href='OptionTab.php'" ><a href="OptionTab.php">🠔 Go Back</a></button>
+                    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
             <input type="submit" name="upload"/>
           </div>
           <p class="file-return"></p>

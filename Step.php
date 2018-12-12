@@ -42,8 +42,6 @@ $PHYSICAL_MEM = $_SESSION['MEMORY'];
     }
 
     $ready_queue = refactorArray($ready_queue);
-
-
     if (count($system_queue) != 0) {
       $system_queue[0]->FT = $time_counter;
       $system_queue[0]->BT -= 1;
@@ -52,7 +50,6 @@ $PHYSICAL_MEM = $_SESSION['MEMORY'];
       if ($system_queue[0]->BT == 0) {
         removefromMem($PHYSICAL_MEM,$system_queue[0]->JOB_ID);
         array_push($finish_queue,array_shift($system_queue));
-
       }
 
     }elseif (count($interactive_queue) != 0) {

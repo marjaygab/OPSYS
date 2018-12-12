@@ -145,21 +145,24 @@ ul li:hover:nth-child(4) a:after{
   background: #e46880;
 }
 </style>
+ <link rel="stylesheet" href="Optionss.css">
     </head>
     <body>
-        <h1><center>Choose from the two option what do you want to execute.</center></h1>
+        <header style="height:200px;">
+            <h1><center>Multilevel Queue  • Memory Management</center></h1>
+            <h2> <center>| First Come First Serve | Shortest Remaining Time First | Preemptive Priority | Paging |</center></h2>
+    </header>
 <ul>
   <li>
 
   <li>
     <a href="CPU/Home.php">
-      <i class="fa fa-twitter" aria-hidden="true"></i>
+     
       <span> CPU Scheduling </span>
     </a>
   </li>
   <li>
-    <a href="Home.php">
-      <i class="fa fa-google-plus" aria-hidden="true"></i>
+      <a href="Home.php">
       <span class="hello"> CPU Scheduling w/ Memory Management</span>
     </a>
   </li>
